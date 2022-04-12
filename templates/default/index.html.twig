@@ -9,16 +9,35 @@
 </style>
 
 <div class="example-wrapper">
-    {% if controller_name is defined %}
-        <h1>Hello {{ controller_name }}! ✅</h1>
-    {% else %}
-        <h1>Hello I don't know! ✅</h1>
-    {% endif %}
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/benjamin/Dev/sl/formations/training-2022-04-11/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/benjamin/Dev/sl/formations/training-2022-04-11/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
+    <h1>Sensio TV+</h1>
+    <div>
+        <h3>Latest movies</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Poster</th>
+                    <th>Country</th>
+                    <th>Released</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.id }}</td>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.poster }}</td>
+                        <td>{{ movie.country }}</td>
+                        <td>{{ movie.released ? movie.released|date('Y-m-d') : '' }}</td>
+                        <td>{{ movie.price }}</td>
+                    </tr>
+                {% else %}
+                    <p>No movies in database yet.</p>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
